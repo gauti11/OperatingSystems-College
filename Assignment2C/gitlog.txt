@@ -1,0 +1,13 @@
+[master 8532337] Uploaded files to github
+ 4 files changed, 286 insertions(+)
+ create mode 100644 Assignment2C/Makefile
+ create mode 100644 Assignment2C/journal.txt
+ create mode 100644 Assignment2C/mytime.c
+ create mode 100644 Assignment2C/user-prog.c
+Counting objects: 7, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (7/7), 4.28 KiB | 0 bytes/s, done.
+Total 7 (delta 0), reused 0 (delta 0)
+To https://github.com/vedranade/cs550-operating-systems.git
+   1c0b0d9..8532337  master -> master
