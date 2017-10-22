@@ -1,0 +1,13 @@
+Difference between the three timing mechanisms:
+
+1. current_kernel_time() -
+This function is typically used in the kernel space to return time. Time returned by this function call does not update within a single clock tick. If multiple read commands are issued on this function within one system clock tick, the time returned in nanoseconds will be the same. Hence, on running the user-prog.c program, it can be observed that this time does not change within one clock tick.
+
+2. getnstimeofday() -
+This function is typically used in the kernel space to return time. Time returned by this function in nanoseconds updates within a single clock cycle. This is because this function queries the hardware interrupt timer, or the 'jiffies' counter when it is called which keeps updating multiple times within a single system clock tick. It can be observed on running the user-prog.c program that this value changes within a single clock tick.
+
+3. gettimeofday() -
+This system call is typically used in the user level space to return time. It returns time upto microsecond granularity and not in nanosecond granularity as returned by the above two kernel level functions. This can be observed by checking the output of the user-prog.c, where the number of digits after the decimal point are 6 (microseconds) instead of 9 (nanoseconds).
+
+Init module return value:
+Changing the return value of kernel init_module to -1 and trying to insert the kernel module results in a crash of the whole kernel. 
