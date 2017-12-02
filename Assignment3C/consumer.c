@@ -13,13 +13,12 @@
 
 int main(int argc, char *argv[])
 {
-
-	int fd;
+	int fd;				//File descriptor
 	long int bytes_read;
-	char numstr[MAXLEN];
+	char numstr[MAXLEN];		
 	int num_read;
-	fd = open("/dev/numpipe", O_RDONLY);
-	if(fd < 0)
+	fd = open("/dev/numpipe", O_RDONLY);		//Open character device in read mode only
+	if(fd < 0)		//If characted device file couldn't be opened
         {
                 perror("");
                 printf("error opening character device");
@@ -27,21 +26,21 @@ int main(int argc, char *argv[])
         }
 	while (1)
 	{
-		bytes_read = read(fd, &num_read, sizeof(int));
+		bytes_read = read(fd, &num_read, sizeof(int));		//Read from character device
 		
-		if(bytes_read < 0)
+		if(bytes_read < 0)		//If unable to read from character device
 		{
 			fprintf(stderr, "error reading ret=%ld errno=%d perror: ", bytes_read, errno);
                         perror("");
 		}
-		else
+		else		//If successful read from character device
 		{
 			printf("\nNumber read: %d", num_read);
 			printf("\nData consumed by consumer: %ld", bytes_read);
 		}
 		sleep(1);
 	}
-	close(fd);
+	close(fd);		//Close character device
 	return 0;
 }
 
